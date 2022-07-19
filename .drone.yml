@@ -662,7 +662,7 @@ steps:
     - tag
 
 - name: docker buildx
-  image: docker:17.11
+  image: docker:17.09-rc-dind
   commands:
   - docker login -u  $docker_username -p $docker_password
   - docker buildx build -t linux-ppc6l4 -f  docker/docker/Dockerfile.linux.ppc64le
