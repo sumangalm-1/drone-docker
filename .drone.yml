@@ -663,11 +663,20 @@ steps:
 
 - name: docker buildx
   image: docker:17
-  commands:
-  - docker login 
-  - docker buildx build -t linux-ppc6l4 -f  docker/docker/Dockerfile.linux.ppc64le
-  - docker tag linux-ppc64le sbm13/drone/linux-ppc64le
-  - docker push  sbm13/drone/linux-ppc64le
+  settings:
+    auto_tag: true
+    auto_tag_suffix: linux-ppc64le
+    daemon_off: false
+    dockerfile: docker/docker/Dockerfile.linux.ppc64le
+    password:
+      from_secret: docker_password
+    repo: sbm13/drone
+    username:
+      from_secret: docker_username
+  when:
+    event:
+      exclude:
+      - pull_request
 
 
 trigger:
