@@ -635,7 +635,7 @@ name: linux-ppc64le-docker
 
 platform:
   os: linux
-  arch: ppc64le
+  arch: amd64
 
 steps:
 - name: build-push
@@ -662,7 +662,7 @@ steps:
     - tag
 
 - name: docker publish
-  image: docker:17
+  image: plugins/docker:18
   settings:
     auto_tag: true
     auto_tag_suffix: linux-ppc64le
